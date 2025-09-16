@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 // ==== CONFIG ====
 const CLIENT_ID = process.env.REACT_APP_SPOTIFY_CLIENT_ID as string;
@@ -123,11 +123,22 @@ async function addTracks(
 
 // ==== MAIN COMPONENT ====
 export default function App() {
-  const [accessToken] = useState(getAccessToken());
+  const [accessToken, setAccessToken] = useState(getAccessToken());
   const [trackNames, setTrackNames] = useState<string[]>([]);
   const [folderName, setFolderName] = useState("");
   const [logs, setLogs] = useState<string[]>([]);
   const [playlistUrl, setPlaylistUrl] = useState("");
+
+  useEffect(() => {
+    //add event listener to window.location.hash
+    window.addEventListener("hashchange", () => {
+      debugger;
+      const accessToken = getAccessToken();
+      if (accessToken) {
+        setAccessToken(accessToken);
+      }
+    });
+  }, []);
 
   if (!accessToken) {
     return (
