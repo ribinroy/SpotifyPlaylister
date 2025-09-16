@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 // ==== CONFIG ====
 const CLIENT_ID = process.env.REACT_APP_SPOTIFY_CLIENT_ID as string;
-const REDIRECT_URI = "https://localhost:3000"; // Change if deployed
+const REDIRECT_URI = "https://spotifyplaylister.netlify.app"; // Change if deployed
 const SCOPES = "playlist-modify-public playlist-modify-private";
 
 // ==== AUTH ====
@@ -123,7 +123,7 @@ async function addTracks(
 
 // ==== MAIN COMPONENT ====
 export default function App() {
-  const [accessToken, setAccessToken] = useState(getAccessToken());
+  const [accessToken] = useState(getAccessToken());
   const [trackNames, setTrackNames] = useState<string[]>([]);
   const [folderName, setFolderName] = useState("");
   const [logs, setLogs] = useState<string[]>([]);
