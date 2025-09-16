@@ -9,7 +9,7 @@ const SCOPES = "playlist-modify-public playlist-modify-private";
 function login() {
   const authUrl = new URL("https://accounts.spotify.com/authorize");
   authUrl.searchParams.append("client_id", CLIENT_ID);
-  authUrl.searchParams.append("response_type", "token");
+  authUrl.searchParams.append("response_type", "code");
   authUrl.searchParams.append("redirect_uri", REDIRECT_URI);
   authUrl.searchParams.append("scope", SCOPES);
   window.location.href = authUrl.toString();
@@ -132,7 +132,6 @@ export default function App() {
   useEffect(() => {
     //add event listener to window.location.hash
     window.addEventListener("hashchange", () => {
-      debugger;
       const accessToken = getAccessToken();
       if (accessToken) {
         setAccessToken(accessToken);
