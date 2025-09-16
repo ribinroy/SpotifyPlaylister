@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 // ==== CONFIG ====
 const CLIENT_ID = process.env.REACT_APP_SPOTIFY_CLIENT_ID as string;
-const REDIRECT_URI = "https://spotifyplaylister.netlify.app"; // Change if deployed
+const REDIRECT_URI = "https://spotifyplaylister.netlify.app/"; // Change if deployed
 const SCOPES = "playlist-modify-public playlist-modify-private";
 
 // ==== AUTH ====
