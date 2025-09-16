@@ -3,6 +3,9 @@ import React, { useState, useEffect } from "react";
 // ===== CONFIG =====
 const CLIENT_ID = process.env.REACT_APP_SPOTIFY_CLIENT_ID!;
 const REDIRECT_URI = process.env.REACT_APP_SPOTIFY_REDIRECT_URI!;
+const BACKEND_URL =
+  process.env.REACT_APP_BACKEND_URL ||
+  "https://spotifyplaylister.onrender.com/";
 const SCOPES = "playlist-modify-public playlist-modify-private";
 
 // ===== PKCE HELPERS =====
@@ -143,7 +146,7 @@ export default function App() {
       const codeVerifier = localStorage.getItem("spotify_code_verifier");
       if (!codeVerifier) return;
 
-      fetch("https://your-backend.com/api/exchange_token", {
+      fetch(`${BACKEND_URL}/api/exchange_token`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ code, code_verifier: codeVerifier }),
